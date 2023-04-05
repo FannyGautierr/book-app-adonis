@@ -1,0 +1,19 @@
+<nav class="sticky top-0 bg-white">
+    <ul class="flex flex-row justify-between p-4">
+      <li><a href="/">Home</a></li>
+      <li><a href="/reco" class="reco">Books</a></li>
+      <div>
+        <input type="text" class="search-input">
+        <div class="drop-down flex flex-col ">
+          
+        </div>
+      </div>
+      @if (auth.user)
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="{{ route('auth.logout') }}">Logout</a></li>
+      @else
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      @endif
+    </ul>
+  </nav>

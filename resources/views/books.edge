@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    @entryPointStyles('app')
+    @entryPointScripts('app')
+</head>
+<body>
+    @component('components.navbar')
+    @endcomponent
+
+    <h1>{{ book.title }}</h1>
+    <h2>{{ book.authors }}</h2>
+
+
+
+    <img src="{{book.covers}}" alt="">
+
+    @if( book.description)
+    <p>{{ book.description.value }}</p>
+    @endif
+
+    @each( subject in book.subject)
+    <div class="p-2 bg-slate-200 rounded">{{ subject }}</div>
+    @endeach
+</body>
+</html>
