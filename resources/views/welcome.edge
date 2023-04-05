@@ -7,31 +7,47 @@
   @entryPointStyles('app')
   @entryPointScripts('app')
 </head>
-<body>
+<body >
   @component('components.navbar')
   @endcomponent
 
-  <main>
-   <div class="flex flex-col">
-    <a class="category" href="books/classics">Classics</a>
-    <a class="category" href="books/crime">Crime</a>
-    <a class="category" href="books/fantasy">Fantasy</a>
-    <a class="category" href="books/horror">Horror</a>
-    <a class="category" href="books/mystery">Mystery</a>
-    <a class="category" href="books/poetry">Poetry</a>
-    <a class="category" href="books/plays">Plays</a>
-    <a class="category" href="books/romance">Romance</a>
-    <a class="category" href="books/thriller">Thrillers</a>
-    <a class="category" href="books/war">War</a>
-    <a class="category" href="books/western">Westerns</a>
-    <a class="category" href="books/young-adult">Young Adult</a>
-    <a class="category" href="books/biography">Biography</a>
+  
+    <div class="bg-white flex flex-row items-center justify-around w-full p-8 shadow-nav">
+      <img src="/img/bon.png" alt="" class="w-1/6">
+      <div class="flex flex-col gap-4">
+        <h2 class="text-accent title">TomeSway</h2>
+        <div class="bg-accent h-1 w-full block"></div>
+        <p class="">Discover your next great read with our modern book browsing experience. Search, explore, and add to your bookshelf with ease. Start your reading journey today!</p>
+      </div>
+      <img src="/img/herobook.png" alt="">
+    </div>
 
-  </div>
+    <div class="shadow-menu flex flex-row m-center bg-white w-1/2 p-8 justify-between items-center rounded-full mt-10 font-bold px-10">
+      <div class="font-bold font-2xl active home-select">Our categories</div>
+      <div class="font-bold font-2xl home-select">Trending</div>
+      <div class="font-bold font-2xl home-select">Discover</div>
+    </div>
+
+   <div class="grid grid-cols-2 w-1/2 m-center gap-5 mt-10">
+    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/classics"><p class="text-white font-title font-bold text-3xl">Classics</p></a>
+    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/crime"><p class="text-white font-title font-bold text-3xl">Crime</p></a>
+    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/fantasy"><p class="text-white font-title font-bold text-3xl">Fantasy</p></a>
+    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/horror"><p class="text-white font-title font-bold text-3xl">Horror</p></a>
+    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/mystery"><p class="text-white font-title font-bold text-3xl">Mystery</p></a>
+    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/poetry"><p class="text-white font-title font-bold text-3xl">Poetry</p></a>
+    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/plays"><p class="text-white font-title font-bold text-3xl">Plays</p></a>
+    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/romance"><p class="text-white font-title font-bold text-3xl">Romance</p></a>
+    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/thriller"><p class="text-white font-title font-bold text-3xl">Thrillers</p></a>
+    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/war"><p class="text-white font-title font-bold text-3xl">War</p></a>
+    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/western"><p class="text-white font-title font-bold text-3xl">Westerns</p></a>
+    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/young-adult"><p class="text-white font-title font-bold text-3xl">Young Adult</p></a>
+    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/biography"><p class="text-white font-title font-bold text-3xl">Biography</p></a>
+
+    </div>
 
 
 
      
-  </main>
+  
 </body>
 </html>

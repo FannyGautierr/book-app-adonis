@@ -26,5 +26,7 @@
     @each( subject in book.subject)
     <div class="p-2 bg-slate-200 rounded">{{ subject }}</div>
     @endeach
+
+    <div> <a href='/book/{{book.key}}/add'>Add book to my bookshelf </a></div>
 </body>
 </html>

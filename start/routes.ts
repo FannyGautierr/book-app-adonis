@@ -93,11 +93,12 @@ Route.get('book/:key',async ({view,params})=>{
     const json = await res.json();
     console.log(json)
     const book = { 
-       title: json.title ,
-       description : json.description ,
-       covers : `http://covers.openlibrary.org/b/id/${json.covers[0]}-M.jpg`,
+        title: json.title ,
+        description : json.description ,
+        covers : `http://covers.openlibrary.org/b/id/${json.covers[0]}-M.jpg`,
         authors : json.authors,
         subjects : json.subjects,
+        key : key
       };
     console.log(book.authors)
     return view.render('books', { book });

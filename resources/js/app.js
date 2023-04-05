@@ -54,6 +54,7 @@ searchInput.addEventListener("keydown", function(event){
     .then(json => {
         console.log(json)
         let dropdown = document.querySelector(".drop-down")
+        dropdown.classList.remove("hidden")
         dropdown.innerHTML=""
         for(let i = 0; i <10 ; i++){
             let dropdown = document.querySelector(".drop-down")
@@ -70,4 +71,19 @@ searchInput.addEventListener("keydown", function(event){
     .catch(err => console.log(err))  
 
 
+})
+
+let dropdown = document.querySelector(".drop-down")
+
+dropdown.addEventListener("mouseleave",function(){
+    dropdown.classList.add("hidden")
+})
+
+let homeSelect = document.querySelectorAll(".home-select")
+
+
+homeSelect.forEach((item)=>{
+    item.addEventListener("click", function(){
+        item.classList.add("active")
+      })
 })
