@@ -82,8 +82,11 @@ dropdown.addEventListener("mouseleave",function(){
 let homeSelect = document.querySelectorAll(".home-select")
 
 
-homeSelect.forEach((item)=>{
-    item.addEventListener("click", function(){
-        item.classList.add("active")
-      })
-})
+for (var i = 0; i < homeSelect.length; i++) {
+    homeSelect[i].addEventListener('click', function() {
+      for (var j = 0; j < homeSelect.length; j++) {
+        homeSelect[j].classList.remove('active');
+      }
+      this.classList.add('active');
+    });
+  }

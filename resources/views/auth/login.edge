@@ -9,22 +9,36 @@
     @entryPointScripts('app')
 </head>
 <body>
-   
-<form action="{{ route('auth.login') }}" method="POST">
-    @if (flashMessages.has('form'))
-      <div role="alert">
-        {{ flashMessages.get('form') }}
-      </div>
-    @endif
-    <label>
-      Username or Email
-      <input type="text" name="uid" />
-    </label>
-    <label>
-      Password
-      <input type="password" name="password" />
-    </label>
-    <button type="submit">Login</button>
+  @component('components.navbar')
+  @endcomponent
+<div class="flex flex-row justify-evenly items-center mt-24">
+  <form action="{{ route('auth.login') }}" method="POST" class="flex flex-col items-start justify-between h-full w-1/2">
+
+    <h2 class="font-title text-primary text-5xl ">Login</h2>
+
+      @if (flashMessages.has('form'))
+        <div role="alert">
+          {{ flashMessages.get('form') }}
+        </div>
+      @endif
+
+    <div class="spe-label w-full">
+      <label class="font-title flex flex-col w-full ">
+       <p class=" bg-primary relative left-12  font-extrabold p-2 top-10 w-fit text-2xl">Email</p>
+        <input type="text" name="uid" class="h-14 rounded-xl border border-solid border-[#3C49F3] bg-transparent p-2 font-para "/>
+      </label>
+    </div>
+
+    <div class="spe-label w-full">
+      <label class="font-title flex flex-col"">
+        <p class=" bg-primary relative left-12 p-2 top-10 font-extrabold  w-fit text-2xl"><b>Password</b></p>
+        <input type="password" name="password" class="h-14 rounded-xl border border-solid border-[#3C49F3] bg-transparent p-2 font-para "/>
+      </label>
+    </div>  
+      <button type="submit" class="bg-accent p-5 rounded-full w-1/3 m-center mt-10 text-white text-3xl hover:shadow-2xl transition-shadow">Login</button>
+      <a href="/register" class="m-center mt-10 text-accent underline-offset-2 underline">You don’t have an account ? Register</a>
   </form>
+  <img src="/img/plane.png" alt="" class="w-1/4">
+</div>
 </body>
 </html>

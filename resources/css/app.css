@@ -11,6 +11,9 @@
   box-sizing: border-box;
 }
 
+h2{
+  color: #3C49F3;
+}
 
 
 main {
@@ -107,7 +110,14 @@ color: #090808;
 .active{
   background-color: #3C49F3 !important;
   color: white !important;
-  padding: 20px;
+  padding: 15px;
   border-radius: 2.25rem;
+  font-size: larger;
+  
 
+}
+
+.spe-label{
+  display: flex;
+  flex-direction: column;
 }

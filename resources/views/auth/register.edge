@@ -8,27 +8,43 @@
   @entryPointScripts('app')
 </head>
 <body>
+  @component('components.navbar')
+  @endcomponent
+<div class="flex flex-row justify-evenly items-center mt-24"> 
+ <form action="{{route('auth.register')}}" method="post" class="flex flex-col items-start justify-between h-full w-1/2"">
+  <h2 class="font-title text-primary text-5xl ">Register</h2>
 
- <form action="{{route('auth.register')}}" method="post" class="flex flex-col justify-center items-left m-center w-1/2 gap-8">
-  <label>
-    Email
-    <input type="email" name="email" value="{{ flashMessages.get('email') ?? '' }}" />
-    @if (flashMessages.has('errors.email'))
-      <small style="color: red;">
-        {{ flashMessages.get('errors.email') }}
-      </small>
-    @endif
-  </label>
-  <label>
-    Password
-    <input type="password" name="password" />
-    @if (flashMessages.has('errors.password'))
-      <small style="color: red;">
-        {{ flashMessages.get('errors.password') }}
-      </small>
-    @endif
-  </label>
-    <button type="submit">Register</button>
- </form>
+    <div class="spe-label w-full">
+      <label class="font-title flex flex-col w-full ">
+        <p class=" bg-primary relative left-12  font-extrabold p-2 top-10 w-fit text-2xl">Email</p>
+        <input type="email" name="email" value="{{ flashMessages.get('email') ?? '' }}" class="h-14 rounded-xl border border-solid border-[#3C49F3] bg-transparent p-2 font-para "/>
+        @if (flashMessages.has('errors.email'))
+          <small style="color: red;">
+            {{ flashMessages.get('errors.email') }}
+          </small>
+        @endif
+      </label>
+    </div>
+
+    <div class="spe-label w-full">
+      <label class="font-title flex flex-col w-full ">
+        <p class=" bg-primary relative left-12  font-extrabold p-2 top-10 w-fit text-2xl">Password</p>
+        <input type="password" name="password" class="h-14 rounded-xl border border-solid border-[#3C49F3] bg-transparent p-2 font-para "/>
+        @if (flashMessages.has('errors.password'))
+          <small style="color: red;">
+            {{ flashMessages.get('errors.password') }}
+          </small>
+        @endif
+      </label>
+    </div>
+    <button type="submit" class="bg-accent p-5 rounded-full w-1/3 m-center mt-10 text-white text-3xl">Register</button>
+    <a href="/login" class="m-center mt-10 text-accent underline-offset-2 underline">You already have an account ? Login</a>
+
+  </form>
+
+ <img src="/img/hello.png" alt="" class="w-1/4">
+
+</div>
+
 </body>
 </html>
