@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { EqualStencilFunc } from 'three';
 import '../css/app.css'
 
 
@@ -46,7 +47,7 @@ searchInput.addEventListener("keydown", function(event){
     let query = searchInput.value 
     const fetch = require('node-fetch');
   
-    const url = `http://openlibrary.org/search.json?title=${query}`;
+    const url = `http://openlibrary.org/search.json?title=${query}&language:eng`;
     console.log(url)
   
     fetch(url)
@@ -82,11 +83,35 @@ dropdown.addEventListener("mouseleave",function(){
 let homeSelect = document.querySelectorAll(".home-select")
 
 
+
 for (var i = 0; i < homeSelect.length; i++) {
+
     homeSelect[i].addEventListener('click', function() {
+        let categories = document.querySelector("#category-component")
+        let trending = document.querySelector("#trending-component")
+        let discover = document.querySelector("#discover-component")
       for (var j = 0; j < homeSelect.length; j++) {
         homeSelect[j].classList.remove('active');
       }
       this.classList.add('active');
+      if(this.classList.contains("our-categories")){
+        console.log("categories")
+        categories.classList.remove('hidden')
+        trending.classList.add('hidden')
+        discover.classList.add('hidden')
+
+      }else if(this.classList.contains("trending")){
+        console.log("trend")
+
+        trending.classList.remove('hidden')
+        categories.classList.add('hidden')
+        discover.classList.add('hidden')
+      }else{
+        discover.classList.remove('hidden')
+        categories.classList.add('hidden')
+        trending.classList.add('hidden')
+      }
     });
   }
+
+  

@@ -22,32 +22,30 @@
       <img src="/img/herobook.png" alt="">
     </div>
 
-    <div class="shadow-menu flex flex-row m-center bg-white w-1/2 p-8 justify-around items-center rounded-full mt-10 font-bold px-10">
-      <div class="font-bold font-2xl active home-select our-categories">Our categories</div>
+    <div id="menu-container" class="shadow-menu flex flex-row m-center bg-white w-1/2 p-8 justify-around items-center rounded-full mt-10 font-bold px-10">
+      <div class="font-bold font-2xl active home-select our-categories">Categories</div>
       <div class="font-bold font-2xl home-select trending">Trending</div>
       <div class="font-bold font-2xl home-select discover">Discover</div>
     </div>
 
-   <div class="grid grid-cols-2 w-1/2 m-center gap-5 mt-10">
-    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/classics"><p class="text-white font-title font-bold text-3xl">Classics</p></a>
-    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/crime"><p class="text-white font-title font-bold text-3xl">Crime</p></a>
-    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/fantasy"><p class="text-white font-title font-bold text-3xl">Fantasy</p></a>
-    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/horror"><p class="text-white font-title font-bold text-3xl">Horror</p></a>
-    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/mystery"><p class="text-white font-title font-bold text-3xl">Mystery</p></a>
-    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/poetry"><p class="text-white font-title font-bold text-3xl">Poetry</p></a>
-    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/plays"><p class="text-white font-title font-bold text-3xl">Plays</p></a>
-    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/romance"><p class="text-white font-title font-bold text-3xl">Romance</p></a>
-    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/thriller"><p class="text-white font-title font-bold text-3xl">Thrillers</p></a>
-    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/war"><p class="text-white font-title font-bold text-3xl">War</p></a>
-    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/western"><p class="text-white font-title font-bold text-3xl">Westerns</p></a>
-    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/young-adult"><p class="text-white font-title font-bold text-3xl">Young Adult</p></a>
-    <a class="category h-48 bg-accent text-white p-4 pb-1 rounded-3xl items-end flex justify-start " href="books/biography"><p class="text-white font-title font-bold text-3xl">Biography</p></a>
-
+    <div id="category-component">
+      @component('components.home.category')
+      @endcomponent
+    </div>
+    
+    <div id="trending-component" class="hidden">
+      @component('components.home.trending',{ books: books })
+      @endcomponent
+    </div>
+    
+    <div id="discover-component" class="hidden">
+      @component('components.home.discover')
+      @endcomponent
     </div>
 
 
 
      
-  
+   
 </body>
 </html>

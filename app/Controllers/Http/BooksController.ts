@@ -5,9 +5,8 @@ import axios from 'axios';
 
 export default class BooksController {
 
-    public async add({params,views}){
-      let key=params.id;
-      
+    public async trending(){
+     
     }
 
 }

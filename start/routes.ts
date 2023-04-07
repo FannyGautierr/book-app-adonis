@@ -19,10 +19,23 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import axios from 'axios'
 
 
 Route.get('/', async ({ view }) => {
-  return view.render('welcome')
+  const url = `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${process.env.NY_API_KEY}`
+  const res = await axios.get(url);
+  const json = await res.data;
+  console.log(json)
+  const books = json.results.books.map((book) => ({
+    title: book.title,
+    cover : book.book_image,
+    author : book.author,
+  })
+  )
+  console.log(books)
+ 
+  return view.render('welcome',{books})
 })
 Route.get('register', 'AuthController.registerShow').as('auth.register.show')
 Route.get('login', 'AuthController.loginShow').as('auth.login.show')
@@ -37,7 +50,8 @@ Route.get('/dashboard', async ({ view }) => {
 Route.get('/reco/:category', async ({ view,params }) => {
   const fetch = require('node-fetch');
   const category = params.category
-  const url = `https://hapi-books.p.rapidapi.com/week/${category}/10`;
+  /*const url = `https://hapi-books.p.rapidapi.com/week/${category}/10`;*/
+  const url = `https://www.googleapis.com/books/v1/volumes?q=subject:${category}&orderBy=newest&maxResults=20`
 
   const options = {
     method: 'GET',
@@ -64,17 +78,19 @@ Route.get('/books/:category', async ({ view, params }) => {
   const fetch = require('node-fetch');
   const category = params.category;
 
-  const url = `http://openlibrary.org/search.json?q=subject:${category}&limit=10`;
+  /*const url = `http://openlibrary.org/search.json?q=subject:${category}&limit=30&sort=new&language:eng`;*/
+  /*const url = `https://www.googleapis.com/books/v1/volumes?q=subject:${category}&orderBy=newest&maxResults=20`*/
+const url =`https://www.googleapis.com/books/v1/volumes?q=subject:${category}&printType=books&minRating=4.0&orderBy=relevance&maxResults=20`
 
   try {
     const res = await fetch(url);
     const json = await res.json();
     console.log(json)
-    const books = json.docs.map((book) => ({
-      title: book.title,
-      author: book.author_name ? book.author_name.join(", ") : "",
-      cover: `http://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`,
-      key : book.key.substring(6)
+    const books = json.items.map((book) => ({
+      title: book.volumeInfo.title,
+      author: book.volumeInfo.author_name ? book.volumeInfo.author_name.join(", ") : "",
+      cover: book.volumeInfo.imageLinks.thumbnail ? book.volumeInfo.imageLinks.thumbnail : "", 
+      key : book.id
     }));
     console.log(books)
     return view.render('book', { books, category });
@@ -86,7 +102,7 @@ Route.get('/books/:category', async ({ view, params }) => {
 Route.get('book/:key',async ({view,params})=>{
   const fetch = require('node-fetch');
   const key = params.key;
-  const url = `http://openlibrary.org/works/${key}.json`;
+  const url = `http://openlibrary.org/works/${key}.json?language:eng`;
   console.log(url)
   try {
     const res = await fetch(url);
