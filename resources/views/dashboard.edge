@@ -14,5 +14,10 @@
 
     <h1 class="text-center text-2xl mt-5">Hey {{auth.user.email}} !</h1>
     <li><a href="{{ route('auth.logout') }}">Logout</a></li>
+
+
+    @each(item in bookshelf)
+    <p>{{item.title}}</p>
+    @endeach
 </body>
 </html>
