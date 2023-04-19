@@ -17,7 +17,11 @@
 
 
     @each(item in bookshelf)
+    <form method="post" action="{{ route('books.delete') }}" class="bg-slate-500 p-5 m-5">
     <p>{{item.title}}</p>
+    <input type="hidden" value="{{ item.id }}" name="book_id">
+    <input type="submit" value="Delete the book of my shelf">
+    </form>
     @endeach
 </body>
 </html>

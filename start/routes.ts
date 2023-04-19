@@ -19,8 +19,7 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
-import axios, { all } from 'axios'
-import Database from '@ioc:Adonis/Lucid/Database'
+import axios from 'axios'
 import Book from 'App/Models/Book'
 
 
@@ -44,54 +43,21 @@ Route.get('login', 'AuthController.loginShow').as('auth.login.show')
 Route.post('register', 'AuthController.register').as('auth.register')
 Route.post('login', 'AuthController.login').as('auth.login') 
 Route.get('logout','AuthController.logout').as('auth.logout')
+
+// CRUD FOR BOOKS
 Route.post('add','BooksController.add').as('books.add')
+Route.post('delete','BooksController.delete').as('books.delete')
+
 
 Route.get('/dashboard', async ({ view,auth }) => {
   let books = await Book.query().where("user_id",auth.user.id)
   type Book = {
     title: string;
     authors: string[];
+    id : number;
   };
-  
   const bookshelf: Book[] = [];
   
-
-  /*books.forEach(async item => {
-    const fetch = require('node-fetch');
-    const key = item.book_id;
-  /*const url = `http://openlibrary.org/works/${key}.json?language:eng`;*/
-/*  const url =`https://www.googleapis.com/books/v1/volumes/${key}`*/
-   /*try {
-    const res = await fetch(url);
-    const json = await res.json();
-    console.log(json)
-    const book = { 
-        title: json.title ,
-        description : json.description ,
-        covers : json.volumeInfo.imageLinks.thumbnail,
-        authors : json.authors,
-        subjects : json.subjects,
-        key : key
-      };
-     allBooks.push(book)
-    return allBooks  
-  }catch (err){
-    console.error('error:' + err);
-  }*/
- /* try {
-    const res = await fetch(url);
-    const json = await res.json();
-    const book : Book = {
-      title: json.volumeInfo.title,
-      authors: json.volumeInfo.authors,
-    }
-    bookshelf.push(book)
-    console.log(bookshelf)
-  } catch (error) {
-    console.error(`Error retrieving book information : ${error}`);
-    // handle the error
-  }
-  });*/
   await Promise.all(books.map(async (item) => {
     const fetch = require('node-fetch');
     const key = item.book_id;
@@ -103,6 +69,7 @@ Route.get('/dashboard', async ({ view,auth }) => {
       const book: Book = {
         title: json.volumeInfo.title,
         authors: json.volumeInfo.authors,
+        id: item.id
       };
       bookshelf.push(book);
     } catch (error) {
@@ -113,8 +80,6 @@ Route.get('/dashboard', async ({ view,auth }) => {
 
   console.log('this is bookshel :'+bookshelf)
   return view.render('dashboard',{bookshelf})
-
-  
 })
 
 Route.get('/reco/:category', async ({ view,params }) => {

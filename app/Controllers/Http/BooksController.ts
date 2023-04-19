@@ -8,32 +8,6 @@ import User from 'App/Models/User'
 
 
 export default class BooksController {
-    /*public async add({request,response,auth}){
-      const bookSchema = schema.create({
-        //user_id: schema.number([rules.exists({ table: 'users', column: 'id' })])
-        book_id: schema.string({}, [rules.minLength(1)])
-      })
-      console.log(bookSchema)
-      console.log(request.all())
-      const data = await request.validate({ schema: bookSchema })
-      console.log(data)
-      //const user = await User.findOrFail(request.id)
-     
-      const book = new Book()
-      //await book.related('user_id').attach([user])
-      const user = auth.user;
-   
-      book.merge(data);
-      //user.books().save(book);
-      await user.books().save(book);
-
-      /*book.merge(data)
-*/
-     /* await book.save()*/
-  /*
-      return response.redirect('/dashboard')
-    }
-*/
 
 public async add({ request, response, auth }) {
   const bookSchema = schema.create({
@@ -45,6 +19,15 @@ public async add({ request, response, auth }) {
   book.merge(data)
   book.user_id = auth.user.id
   await book.save()
+  return response.redirect('/dashboard')
+}
+
+public async delete({request,response}){
+  console.log(request)
+  const id = request.requestBody.book_id
+  const book = await Book.findOrFail(id)
+  await book.delete()
+
   return response.redirect('/dashboard')
 }
 }
