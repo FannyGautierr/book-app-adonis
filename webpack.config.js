@@ -1,11 +1,9 @@
 const { join } = require('path')
 const Encore = require('@symfony/webpack-encore')
 
-const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 
-  
-
+ 
 
 
 /*
@@ -180,7 +178,8 @@ Encore.configureDevServerOptions((options) => {
 // Encore.configureCssLoader(() => {})
 
 Encore.enablePostCssLoader() 
-Encore.addPlugin(new NodePolyfillPlugin())
+
+        
 /*
 |--------------------------------------------------------------------------
 | Enable Vue loader
@@ -221,3 +220,4 @@ config.stats = 'errors-warnings'
 |
 */
 module.exports = config
+
