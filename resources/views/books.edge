@@ -15,22 +15,33 @@
     <h1>{{ book.title }}</h1>
     <h2>{{ book.authors }}</h2>
 
-
-
     <img src="{{book.covers}}" alt="">
+    <H1> global score : {{aggregationResult[0].averageRating}}</H1>
+    @each( rating in aggregationResult[0].ratings)
+   <H2>{{ rating.name }}</H2>
+    <h3>Rating : {{ rating.rating }}</h3>
+    <h3>Number of rates : {{rating.number_of_reviews}}</h3>
+    @endeach
 
-    @if( book.description)
-    <p>{{ book.description.value }}</p>
+  
+
+
+    @if( book.description )
+    <div>{{{ book.description }}}</div>
     @endif
 
     @each( subject in book.subject)
     <div class="p-2 bg-slate-200 rounded">{{ subject }}</div>
     @endeach
 
+    @if(auth.user)
     <form action="{{ route('books.add') }}" method="post">
      
         <input type="hidden" name="book_id" value="{{ book.key }}">
-        <input type="submit" value="Add to book shelf">
+        <input type="submit" value="+ Add to book shelf" class="p-4 bg-accent text-white rounded-xl">
     </form>
+    @else
+    <p class="text-slate-500">Login or create an account to add a book</p>
+    @endif
 </body>
 </html>

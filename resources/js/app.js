@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { EqualStencilFunc } from 'three';
 import '../css/app.css'
 
 
@@ -43,11 +41,12 @@ document.addEventListener("DOMContentLoaded",function(){
 
 let searchInput = document.querySelector(".search-input")
 
-searchInput.addEventListener("keydown", function(event){
+searchInput.addEventListener("keydown", function(){
     let query = searchInput.value 
     const fetch = require('node-fetch');
   
-    const url = `http://openlibrary.org/search.json?title=${query}&language:eng`;
+    /*const url = `http://openlibrary.org/search.json?title=${query}&language:eng`;*/
+    const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&orderBy=relevance`
     console.log(url)
   
     fetch(url)
@@ -60,10 +59,10 @@ searchInput.addEventListener("keydown", function(event){
         for(let i = 0; i <10 ; i++){
             let dropdown = document.querySelector(".drop-down")
             let link = document.createElement("a")
-            let key = json.docs[i].key.substring(6)
-            link.href = "/book"+ key 
+            let key = json.items[i].id
+            link.href = "/book/"+ key 
             let title = document.createElement("p")
-            title.innerHTML = json.docs[i].title
+            title.innerHTML = json.items[i].volumeInfo.title
             link.appendChild(title)
             dropdown.appendChild(link)
     
