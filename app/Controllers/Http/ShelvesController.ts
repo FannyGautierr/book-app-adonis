@@ -1,9 +1,9 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import Shelf from "App/Models/Shelf"
+
 
 export default class ShelvesController {
-    public async add({ request, response, auth }) {
+   /* public async add({ request, response, auth }) {
       
     
         const shelf = new Shelf()
@@ -12,5 +12,5 @@ export default class ShelvesController {
         await shelf.save()
         return response.redirect('/dashboard')
       }
-    
+    */
 }

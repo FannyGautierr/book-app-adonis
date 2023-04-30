@@ -54,38 +54,44 @@ Route.post('delete', 'BooksController.delete').as('books.delete')
 Route.post('addShelf', 'ShelvesController.add').as('shelf.add')
 
 Route.get('/dashboard', async ({ view, auth }) => {
-  let books = await Book.query().where('user_id', auth.user.id)
-  type Book = {
-    title: string
-    authors: string[]
-    id: number
-  }
-  const bookshelf: Book[] = []
-
-  await Promise.all(
-    books.map(async (item) => {
-      const fetch = require('node-fetch')
-      const key = item.book_id
-      const url = `https://www.googleapis.com/books/v1/volumes/${key}`
-
-      try {
-        const res = await fetch(url)
-        const json = await res.json()
-        const book: Book = {
-          title: json.volumeInfo.title,
-          authors: json.volumeInfo.authors,
-          id: item.id,
+  if(auth.user){
+    let books = await Book.query().where('user_id', auth.user.id)
+    type Book = {
+      title: string
+      authors: string[]
+      id: number
+    }
+    const bookshelf: Book[] = []
+  
+    await Promise.all(
+      books.map(async (item) => {
+        const fetch = require('node-fetch')
+        const key = item.book_id
+        const url = `https://www.googleapis.com/books/v1/volumes/${key}`
+  
+        try {
+          const res = await fetch(url)
+          const json = await res.json()
+          const book: Book = {
+            title: json.volumeInfo.title,
+            authors: json.volumeInfo.authors,
+            id: item.id,
+          }
+          bookshelf.push(book)
+        } catch (error) {
+          console.error(`Error retrieving book information : ${error}`)
+          // handle the error
         }
-        bookshelf.push(book)
-      } catch (error) {
-        console.error(`Error retrieving book information : ${error}`)
-        // handle the error
-      }
-    })
-  )
+      })
+    )
+  
+    console.log('this is bookshel :' + bookshelf)
+    return view.render('dashboard', { bookshelf })
+  }else{
+    return view.render('/')
 
-  console.log('this is bookshel :' + bookshelf)
-  return view.render('dashboard', { bookshelf })
+  }
+  
 })
 
 Route.get('/reco/:category', async ({ view, params }) => {
