@@ -25,4 +25,3 @@ module.exports = {
   plugins: [],
 }
 
-//Lower then

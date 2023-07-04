@@ -6,6 +6,7 @@ export default class BooksController {
     const bookSchema = schema.create({
       book_id: schema.string({}, [rules.minLength(1)]),
     })
+    const cachable = false // TO REMOVE JUST FOR TEST
     const data = await request.validate({ schema: bookSchema })
     const book = new Book()
     book.merge(data)

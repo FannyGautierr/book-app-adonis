@@ -17,6 +17,7 @@ export default class AuthController {
         })
         const data = await request.validate({ schema: userSchema })
         const user = await User.create(data)
+        const cachable = false // TO REMOVE JUST FOR TEST
         await auth.login(user)
         return response.redirect('/')
       }
