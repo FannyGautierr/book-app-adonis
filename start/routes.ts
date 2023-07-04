@@ -26,6 +26,7 @@ import DOMPurify from 'dompurify'
 import * as console from 'console'
 
 Route.get('/', async ({ view }) => {
+  
   const url = `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${process.env.NY_API_KEY}`
   const res = await axios.get(url)
   const json = await res.data
@@ -35,7 +36,6 @@ Route.get('/', async ({ view }) => {
     cover: book.book_image,
     author: book.author,
   }))
-  console.log(books)
 
   return view.render('welcome', { books })
 })
