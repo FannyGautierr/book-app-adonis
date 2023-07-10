@@ -6,7 +6,7 @@ export default class ShelvesController {
   
    public async add({ request, response, auth }) {
       
-        const cachable = false // TO REMOVE JUST FOR TEST
+        const cacheable = false // TO REMOVE JUST FOR TEST
        /* const shelf = new Shelf()
         shelf.merge(data)
         shelf.user_id = auth.user.id
